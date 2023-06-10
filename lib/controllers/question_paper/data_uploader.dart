@@ -19,7 +19,7 @@ class DataUploader extends GetxController {
     final manifestContent = await DefaultAssetBundle.of(Get.context!)
         .loadString("AssetManifest.json");
     final Map<String, dynamic> manifestMap = json.decode(manifestContent);
-    //load json file and print path
+    //load json file and print paths
     final papersInAssets = manifestMap.keys
         .where((path) =>
             path.startsWith("assets/DB/paper") && path.contains(".json"))
