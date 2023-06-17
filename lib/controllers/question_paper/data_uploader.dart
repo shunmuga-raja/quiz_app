@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:quiz_app/firebase_ref/reference.dart';
 import 'package:quiz_app/modles/question_paper_model.dart';
 
 //controller
@@ -15,7 +17,8 @@ class DataUploader extends GetxController {
   }
 
   //This method used for upload the data in firebase;
-  void uploadData() async {
+  Future<void> uploadData() async {
+    final fireStore = FirebaseFirestore.instance;
     final manifestContent = await DefaultAssetBundle.of(Get.context!)
         .loadString("AssetManifest.json");
     final Map<String, dynamic> manifestMap = json.decode(manifestContent);
@@ -31,6 +34,17 @@ class DataUploader extends GetxController {
       questionPapers
           .add(QuestionPaperModel.fromJson(json.decode(stringPaperContent)));
     }
-    print('Items number ${questionPapers.length}');
+    //print('Items number ${questionPapers.length}');
+    var batch = fireStore.batch();
+
+    for (var paper in questionPapers) {
+      batch.set(questionPaperRF.doc(paper.id), {
+        "title": paper.title,
+        "image_url": paper.imageUrl,
+        "description": paper.description,
+        "time_seconds": paper.timeSeconds,
+        "questions_count": paper.questions == null ? 0 : paper.questions!.length
+      });
+    }
   }
 }
