@@ -8,11 +8,19 @@ class AppIntroductionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(alignment: Alignment.center,
-      child: Column(children: const [
-        Icon(Icons.star,size: 65, color: Colors.amber),
-        Text("This is a study app. You can use it as you want"),
-        AppCircleButton()
-      ],),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+          const Icon(Icons.star,size: 65, color: Colors.amber),
+          const Text("This is a study app. You can use it as you want"),
+          AppCircleButton(
+            onTap: () =>null,
+            child: const Icon(Icons.arrow_forward, size: 35,),
+          )
+        ],),
+      ),
       ) ,
     );
   }
