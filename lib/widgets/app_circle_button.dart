@@ -15,7 +15,7 @@ class AppCircleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Material(
-      shape: CircleBorder(),child: InkWell(child: Icon(Icons.arrow_back_ios),),
+      shape: CircleBorder(),child: InkWell(child: child),
     );
   }
 }

@@ -15,8 +15,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: AppIntroductionScreen()
+    return GetMaterialApp(
+      getPages: [
+        GetPage(name: "/", page:()=>AppIntroductionScreen())
+      ],
     );
   }
 }
