@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/data_uploader_screen.dart';
 import 'package:quiz_app/firebase_options.dart';
 import 'package:get/get.dart';
+import 'package:quiz_app/routes/app_routes.dart';
 import 'package:quiz_app/screens/introduction/introduction.dart';
 import 'package:quiz_app/screens/splash/splash_screen.dart';
 
@@ -16,9 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      getPages: [
-        GetPage(name: "/", page:()=>AppIntroductionScreen())
-      ],
+      getPages: AppRoutes.routes(),
     );
   }
 }
